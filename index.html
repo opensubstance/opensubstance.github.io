@@ -268,6 +268,40 @@
             margin-top: 60px;
         }
 
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .modal-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .modal .link-btn {
+            margin-top: 10px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px 15px;
@@ -330,13 +364,20 @@
             <a href="https://drive.google.com/file/d/1hQWlmYmP-RVrX0EFD_ulyJ1RAr9FxeDd/view?usp=sharing" class="link-btn">📄 Paper</a>
             <a href="https://drive.google.com/drive/folders/1WjWgG1agL7x0R7Ty1tEYu8IY3-MOwGWS?usp=drive_link" class="link-btn">🖼️ Gallery</a>
             <a href="https://drive.google.com/file/d/1wU0SdeU5JeQU9WGJ1D9KlCk6HKMh6IYD/view?usp=drive_link" class="link-btn">📋 Poster</a>
-            <div style="position: relative;">
-                <a href="#data" class="link-btn disabled">📊 Data</a>
-                <span class="coming-soon">Coming Soon</span>
+            <a href="#" class="link-btn" id="data-btn">📊 Data</a>
+        </div>
+
+        <div id="data-modal" class="modal">
+            <div class="modal-content">
+                <p>The data is released in Science Data Bank, and devided into ten datasets. You may register an account and send request for each dataset.</p>
+                <div class="modal-actions">
+                    <a href="https://www.scidb.cn/en/detail?dataSetId=288d247397a84deaa07b0113473b459d&version=V1" class="link-btn">Proceed</a>
+                    <button class="link-btn cancel-btn">Cancel</button>
+                </div>
             </div>
         </div>
 
-        <div class="highlight">
+        <!-- <div class="highlight">
             </strong> The dataset release is pending university storage allocation due to its substantial size (almost 20 TB). Download access will be available once infrastructure is in place.
         </div>
 
@@ -345,7 +386,7 @@
             <p>
                 We present OpenSubstance, a high-quality measured dataset with 2.4 million high-dynamic-range images of 187 objects with a wide variety in shape and appearance, captured under 270 camera views and 1,637 lighting conditions, including 1,620 one-light-at-a-time, 8 environment, 8 linear and 1 full-on illumination. For each image, the corresponding lighting condition, camera parameters and foreground segmentation mask are provided. High-precision 3D geometry is also acquired for rigid objects. It takes 1 hour on average to capture one object with our custom-built high-performance lightstage and a top-grade commercial 3D scanner. We perform comprehensive quantitative evaluation on state-of-the-art techniques across different tasks, including single- and multi-view photometric stereo, as well as relighting.
             </p>
-        </section>
+        </section> -->
 
 
 
@@ -415,6 +456,24 @@
 
         document.querySelectorAll('.stat-card').forEach(card => {
             observer.observe(card);
+        });
+
+        // Show modal on "📊 Data" button click
+        document.getElementById('data-btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('data-modal').style.display = 'flex';
+        });
+
+        // Hide modal on "Cancel" button click
+        document.querySelector('.cancel-btn').addEventListener('click', function () {
+            document.getElementById('data-modal').style.display = 'none';
+        });
+
+        // Hide modal when clicking outside the modal content
+        document.getElementById('data-modal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
         });
     </script>
 </body>
