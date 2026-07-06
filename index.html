@@ -301,6 +301,20 @@
             border-left: 4px solid #ffc107;
             margin: 20px 0;
         }
+
+        .highlight ol {
+            margin-left: 20px;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .highlight li {
+            margin-bottom: 8px;
+        }
+
+        .highlight li:last-child {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -367,6 +381,13 @@
             <p>
                 We recommend downloading the calibration data and scripts first, then selectively retrieving data for specific items as needed.
             </p>
+            <div class="highlight">
+                <strong>Warning:</strong>
+                <ol>
+                    <li>For studies using multiple lighting conditions, please note that the lighting conditions used for different objects are not fully consistent during data acquisition (three different lighting-condition sets in total). Please refer to <code>SharedData/patterns</code>.</li>
+                    <li>Part of the data for obj 185 and obj 187 was lost during data transfer and is still being recovered.</li>
+                </ol>
+            </div>
         </section>
 
         <section class="citation">
